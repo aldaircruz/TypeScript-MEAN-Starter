@@ -1,5 +1,8 @@
 import * as shell from "shelljs";
 
-shell.cp("-R", "src/public/js/lib", "dist/public/js/");
-shell.cp("-R", "src/public/fonts", "dist/public/");
-shell.cp("-R", "src/public/images", "dist/public/");
+const baseDevDirName = "server";
+const distDirName = "dist";
+
+shell.cp("-R", `${baseDevDirName}/public/js/lib`, `${distDirName}/public/js/`);
+shell.cp("-R", `${baseDevDirName}/public/fonts`, `${distDirName}/public/`);
+shell.cp("-R", `${baseDevDirName}/public/images`, `${distDirName}/public/`);
