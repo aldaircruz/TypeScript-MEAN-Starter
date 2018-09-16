@@ -83,9 +83,18 @@
     "request-promise": "^4.2.2",
     "rxjs": "^6.3.1",
     "winston": "^2.4.0",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "@angular/platform-server": "^6.0.0",
+    "@nguniversal/common": "^6.0.0",
+    "@nguniversal/express-engine": "^6.0.0",
+    "@nguniversal/module-map-ngfactory-loader": "^6.0.0"
   },
   "devDependencies": {
+    "express": "^4.15.2",
+    "http-server": "^0.10.0",
+    "pre-commit": "^1.2.2",
+    "reflect-metadata": "^0.1.10",
+    "ts-loader": "^4.2.0",
     "@angular-devkit/build-angular": "~0.7.5",
     "@angular/cli": "~6.1.5",
     "@angular/compiler-cli": "^6.1.6",
