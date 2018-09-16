@@ -1,5 +1,5 @@
-import winston from "winston";
-import { Logger } from "winston";
+ import winston from "winston";
+ import { Logger } from "winston";
 import { ENVIRONMENT } from "./secrets";
 
 const logger = new (Logger)({
