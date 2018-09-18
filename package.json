@@ -41,7 +41,7 @@
     "br": "npm run build:ssr && npm run serve:ssr",
     "compile:server": "tsc -p server.tsconfig.json",
     "generate:prerender": "cd dist && node prerender",
-    "serve:prerender": "cd dist/browser && http-server",
+    "serve:prerender": "cd dist/public && http-server",
     "serve:ssr": "node dist/server"
   },
   "dependencies": {
