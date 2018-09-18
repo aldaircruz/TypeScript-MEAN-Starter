@@ -13,7 +13,7 @@ import {join} from 'path';
 enableProdMode();
 
 // Express server
-const app = express();
+import app from './server/app';
 
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
@@ -30,13 +30,13 @@ app.engine('html', ngExpressEngine({
 }));
 
 app.set('view engine', 'html');
-app.set('views', join(DIST_FOLDER, 'browser'));
+app.set('views', join(DIST_FOLDER, 'public'));
 
 // Example Express Rest API endpoints
 // app.get('/api/**', (req, res) => { });
 
 // Server static files from /browser
-app.get('*.*', express.static(join(DIST_FOLDER, 'browser'), {
+app.get('*.*', express.static(join(DIST_FOLDER, 'public'), {
   maxAge: '1y'
 }));
 
