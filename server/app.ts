@@ -1,16 +1,16 @@
-import express from 'express';
-import compression from 'compression';  // compresses requests
-import session from 'express-session';
-import bodyParser from 'body-parser';
-import lusca from 'lusca';
-import dotenv from 'dotenv';
-import mongo from 'connect-mongo';
-import flash from 'express-flash';
-import path from 'path';
-import mongoose from 'mongoose';
-import passport from 'passport';
-import expressValidator from 'express-validator';
-import bluebird from 'bluebird';
+const express = require('express');
+const compression = require('compression');  // compresses requests
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const lusca = require('lusca');
+const dotenv = require('dotenv');
+const mongo = require('connect-mongo');
+const flash = require('express-flash');
+const path = require('path');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const expressValidator = require('express-validator');
+const bluebird = require('bluebird');
 import { MONGODB_URI, SESSION_SECRET } from './util/secrets';
 
 const MongoStore = mongo(session);
@@ -34,7 +34,7 @@ const app = express();
 // Connect to MongoDB
 const mongoUrl = MONGODB_URI;
 (<any>mongoose).Promise = bluebird;
-mongoose.connect(mongoUrl, {useMongoClient: true}).then(
+mongoose.connect(mongoUrl, { useMongoClient: true }).then(
   () => { /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
 ).catch(err => {
   console.log('MongoDB connection error. Please make sure MongoDB is running. ' + err);
@@ -43,8 +43,6 @@ mongoose.connect(mongoUrl, {useMongoClient: true}).then(
 
 // Express configuration
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'pug');
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -76,7 +74,7 @@ app.use((req, res, next) => {
     !req.path.match(/\./)) {
     req.session.returnTo = req.path;
   } else if (req.user &&
-    req.path == '/account') {
+    req.path === '/account') {
     req.session.returnTo = req.path;
   }
   next();
@@ -89,7 +87,7 @@ app.use(
 /**
  * Primary app routes.
  */
-app.get('/', homeController.index);
+// app.get('/', homeController.index);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);

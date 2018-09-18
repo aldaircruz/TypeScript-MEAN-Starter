@@ -1,7 +1,7 @@
-import passport from 'passport';
-import passportLocal from 'passport-local';
-import passportFacebook from 'passport-facebook';
-import _ from 'lodash';
+const passport = require('passport');
+const passportLocal = require('passport-local');
+const passportFacebook = require('passport-facebook');
+const _ = require('lodash');
 
 // import { User, UserType } from '../models/User';
 import { default as User } from '../models/User';
@@ -10,7 +10,7 @@ import { Request, Response, NextFunction } from 'express';
 const LocalStrategy = passportLocal.Strategy;
 const FacebookStrategy = passportFacebook.Strategy;
 
-passport.serializeUser<any, any>((user, done) => {
+passport.serializeUser((user, done) => {
   done(undefined, user.id);
 });
 
@@ -30,8 +30,8 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
     if (!user) {
       return done(undefined, false, { message: `Email ${email} not found.` });
     }
-    user.comparePassword(password, (err: Error, isMatch: boolean) => {
-      if (err) { return done(err); }
+    user.comparePassword(password, (compareError: Error, isMatch: boolean) => {
+      if (compareError) { return done(compareError); }
       if (isMatch) {
         return done(undefined, user);
       }
@@ -68,37 +68,40 @@ passport.use(new FacebookStrategy({
   passReqToCallback: true
 }, (req: any, accessToken, refreshToken, profile, done) => {
   if (req.user) {
-    User.findOne({ facebook: profile.id }, (err, existingUser) => {
-      if (err) { return done(err); }
+    User.findOne({ facebook: profile.id }, (err0, existingUser) => {
+      if (err0) { return done(err0); }
       if (existingUser) {
+        // tslint:disable-next-line:max-line-length
         req.flash('errors', { msg: 'There is already a Facebook account that belongs to you. Sign in with that account or delete it, then link it with your current account.' });
-        done(err);
+        done(err0);
       } else {
-        User.findById(req.user.id, (err, user: any) => {
-          if (err) { return done(err); }
+        User.findById(req.user.id, (err1, user: any) => {
+          if (err1) { return done(err1); }
           user.facebook = profile.id;
           user.tokens.push({ kind: 'facebook', accessToken });
           user.profile.name = user.profile.name || `${profile.name.givenName} ${profile.name.familyName}`;
           user.profile.gender = user.profile.gender || profile._json.gender;
           user.profile.picture = user.profile.picture || `https://graph.facebook.com/${profile.id}/picture?type=large`;
-          user.save((err: Error) => {
+          user.save((err2: Error) => {
             req.flash('info', { msg: 'Facebook account has been linked.' });
-            done(err, user);
+            done(err2, user);
           });
         });
       }
     });
   } else {
-    User.findOne({ facebook: profile.id }, (err, existingUser) => {
-      if (err) { return done(err); }
+    User.findOne({ facebook: profile.id }, (err1, existingUser) => {
+      if (err1) { return done(err1); }
       if (existingUser) {
         return done(undefined, existingUser);
       }
-      User.findOne({ email: profile._json.email }, (err, existingEmailUser) => {
-        if (err) { return done(err); }
+      User.findOne({ email: profile._json.email }, (err2, existingEmailUser) => {
+        if (err2) { return done(err2); }
         if (existingEmailUser) {
+          // TODO: handle this
+          // tslint:disable-next-line:max-line-length
           req.flash('errors', { msg: 'There is already an account using this email address. Sign in to that account and link it with Facebook manually from Account Settings.' });
-          done(err);
+          done(err2);
         } else {
           const user: any = new User();
           user.email = profile._json.email;
@@ -108,8 +111,8 @@ passport.use(new FacebookStrategy({
           user.profile.gender = profile._json.gender;
           user.profile.picture = `https://graph.facebook.com/${profile.id}/picture?type=large`;
           user.profile.location = (profile._json.location) ? profile._json.location.name : '';
-          user.save((err: Error) => {
-            done(err, user);
+          user.save((err3: Error) => {
+            done(err3, user);
           });
         }
       });

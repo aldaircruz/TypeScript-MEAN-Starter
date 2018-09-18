@@ -1,6 +1,5 @@
- import winston from 'winston';
- import { Logger } from 'winston';
-import { ENVIRONMENT } from './secrets';
+const winston = require('winston');
+const Logger  = winston.Logger;
 
 const logger = new (Logger)({
     transports: [
