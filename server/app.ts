@@ -10,7 +10,6 @@ const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const expressValidator = require('express-validator');
-const bluebird = require('bluebird');
 import { MONGODB_URI, SESSION_SECRET } from './util/secrets';
 
 const MongoStore = mongo(session);
@@ -33,7 +32,7 @@ const app = express();
 
 // Connect to MongoDB
 const mongoUrl = MONGODB_URI;
-(<any>mongoose).Promise = bluebird;
+mongoose.Promise = global.Promise;
 mongoose.connect(mongoUrl, { useMongoClient: true }).then(
   () => { /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
 ).catch(err => {
