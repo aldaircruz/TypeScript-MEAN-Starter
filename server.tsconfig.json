@@ -4,12 +4,13 @@
     "outDir": "./dist",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "es6",
+    "module": "commonjs",
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "server/types"
     ],
     "lib": [
       "es2017",
