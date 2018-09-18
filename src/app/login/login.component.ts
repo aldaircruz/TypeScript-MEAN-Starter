@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators/index';
 
 import { environment } from '../../environments/environment';
 import { Logger, I18nService, AuthenticationService } from '../core';

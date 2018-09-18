@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators/index';
 
 import { environment } from '../../../environments/environment';
 import { Logger } from '../logger.service';

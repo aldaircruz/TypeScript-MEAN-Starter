@@ -1,9 +1,9 @@
-import request from "supertest";
-import app from "../server/app";
+import request from 'supertest';
+import app from '../server/app';
 
-describe("GET /random-url", () => {
-  it("should return 404", (done) => {
-    request(app).get("/reset")
+describe('GET /random-url', () => {
+  it('should return 404', (done) => {
+    request(app).get('/reset')
       .expect(404, done);
   });
 });

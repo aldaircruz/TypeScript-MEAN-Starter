@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators/index';
 
 import { QuoteService } from './quote.service';
 

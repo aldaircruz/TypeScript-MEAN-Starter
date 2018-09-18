@@ -3,7 +3,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { merge } from 'rxjs';
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { filter, map, mergeMap } from 'rxjs/operators/index';
 
 import { environment } from '../environments/environment';
 import { Logger, I18nService } from './core';
