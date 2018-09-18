@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface Credentials {
   // Customize received credentials here
@@ -24,10 +25,12 @@ export class AuthenticationService {
 
   private _credentials: Credentials | null;
 
-  constructor() {
-    const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
-    if (savedCredentials) {
-      this._credentials = JSON.parse(savedCredentials);
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
+      if (savedCredentials) {
+        this._credentials = JSON.parse(savedCredentials);
+      }
     }
   }
 
@@ -82,13 +85,16 @@ export class AuthenticationService {
   private setCredentials(credentials?: Credentials, remember?: boolean) {
     this._credentials = credentials || null;
 
-    if (credentials) {
-      const storage = remember ? localStorage : sessionStorage;
-      storage.setItem(credentialsKey, JSON.stringify(credentials));
-    } else {
-      sessionStorage.removeItem(credentialsKey);
-      localStorage.removeItem(credentialsKey);
+    if (isPlatformBrowser(this.platformId)) {
+      if (credentials) {
+        const storage = remember ? localStorage : sessionStorage;
+        storage.setItem(credentialsKey, JSON.stringify(credentials));
+      } else {
+        sessionStorage.removeItem(credentialsKey);
+        localStorage.removeItem(credentialsKey);
+      }
     }
+
   }
 
 }

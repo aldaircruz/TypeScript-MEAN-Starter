@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { includes } from 'lodash';
+import { isPlatformBrowser } from '@angular/common';
 
 import { Logger } from './logger.service';
 import * as enUS from '../../translations/en-US.json';
@@ -25,7 +26,7 @@ export class I18nService {
   defaultLanguage: string;
   supportedLanguages: string[];
 
-  constructor(private translateService: TranslateService) {
+  constructor(private translateService: TranslateService, @Inject(PLATFORM_ID) private platformId: Object) {
     // Embed languages to avoid extra HTTP requests
     translateService.setTranslation('en-US', enUS);
     translateService.setTranslation('fr-FR', frFR);
@@ -42,8 +43,10 @@ export class I18nService {
     this.supportedLanguages = supportedLanguages;
     this.language = '';
 
-    this.translateService.onLangChange
-      .subscribe((event: LangChangeEvent) => { localStorage.setItem(languageKey, event.lang); });
+    if (isPlatformBrowser(this.platformId)) {
+      this.translateService.onLangChange
+        .subscribe((event: LangChangeEvent) => { localStorage.setItem(languageKey, event.lang); });
+    }
   }
 
   /**
@@ -53,23 +56,26 @@ export class I18nService {
    * @param {string} language The IETF language code to set.
    */
   set language(language: string) {
-    language = language || localStorage.getItem(languageKey) || this.translateService.getBrowserCultureLang();
-    let isSupportedLanguage = includes(this.supportedLanguages, language);
 
-    // If no exact match is found, search without the region
-    if (language && !isSupportedLanguage) {
-      language = language.split('-')[0];
-      language = this.supportedLanguages.find(supportedLanguage => supportedLanguage.startsWith(language)) || '';
-      isSupportedLanguage = Boolean(language);
+    if (isPlatformBrowser(this.platformId)) {
+      language = language || localStorage.getItem(languageKey) || this.translateService.getBrowserCultureLang();
+      let isSupportedLanguage = includes(this.supportedLanguages, language);
+
+      // If no exact match is found, search without the region
+      if (language && !isSupportedLanguage) {
+        language = language.split('-')[0];
+        language = this.supportedLanguages.find(supportedLanguage => supportedLanguage.startsWith(language)) || '';
+        isSupportedLanguage = Boolean(language);
+      }
+
+      // Fallback if language is not supported
+      if (!isSupportedLanguage) {
+        language = this.defaultLanguage;
+      }
+
+      log.debug(`Language set to ${language}`);
+      this.translateService.use(language);
     }
-
-    // Fallback if language is not supported
-    if (!isSupportedLanguage) {
-      language = this.defaultLanguage;
-    }
-
-    log.debug(`Language set to ${language}`);
-    this.translateService.use(language);
   }
 
   /**
