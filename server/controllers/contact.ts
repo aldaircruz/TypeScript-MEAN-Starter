@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer');
 import { Request, Response } from 'express';
 
 const transporter = nodemailer.createTransport({
@@ -24,10 +24,14 @@ export let getContact = (req: Request, res: Response) => {
  * Send a contact form via Nodemailer.
  */
 export let postContact = (req: Request, res: Response) => {
+   // tslint:disable-next-line
   req.assert('name', 'Name cannot be blank').notEmpty();
+   // tslint:disable-next-line
   req.assert('email', 'Email is not valid').isEmail();
+   // tslint:disable-next-line
   req.assert('message', 'Message cannot be blank').notEmpty();
 
+   // tslint:disable-next-line
   const errors = req.validationErrors();
 
   if (errors) {
