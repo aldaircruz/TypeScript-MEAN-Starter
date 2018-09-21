@@ -17,8 +17,6 @@ import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { TransferHttpCacheModule } from '@nguniversal/common';
-
 @NgModule({
   imports: [
     BrowserModule.withServerTransition({ appId: 'my-app' }),
@@ -35,8 +33,7 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
     HomeModule,
     LoginModule,
     Angulartics2Module.forRoot([]),
-    AppRoutingModule,
-    TransferHttpCacheModule
+    AppRoutingModule
   ],
   declarations: [AppComponent],
   providers: [],
