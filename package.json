@@ -31,9 +31,7 @@
     "generate": "ng generate",
     "build": "npm run env && npm run tslint && ng build",
     "lint": "ng lint ng-universal-demo && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
-    "build:ssr": "ng build --prod && npm run compile:server",
-    "br": "npm run build:ssr && npm run serve:ssr",
-    "compile:server": "tsc -p server.tsconfig.json",
+    "build:server": "tsc -p server.tsconfig.json",
     "start": "node dist/server"
   },
   "dependencies": {
