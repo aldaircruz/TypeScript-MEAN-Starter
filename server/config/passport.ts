@@ -72,7 +72,7 @@ passport.use(new FacebookStrategy({
       if (err0) { return done(err0); }
       if (existingUser) {
         // tslint:disable-next-line:max-line-length
-        req.flash('errors', { msg: 'There is already a Facebook account that belongs to you. Sign in with that account or delete it, then link it with your current account.' });
+        // req.flash('errors', { msg: 'There is already a Facebook account that belongs to you. Sign in with that account or delete it, then link it with your current account.' });
         done(err0);
       } else {
         User.findById(req.user.id, (err1, user: any) => {
@@ -83,7 +83,7 @@ passport.use(new FacebookStrategy({
           user.profile.gender = user.profile.gender || profile._json.gender;
           user.profile.picture = user.profile.picture || `https://graph.facebook.com/${profile.id}/picture?type=large`;
           user.save((err2: Error) => {
-            req.flash('info', { msg: 'Facebook account has been linked.' });
+            // req.flash('info', { msg: 'Facebook account has been linked.' });
             done(err2, user);
           });
         });
@@ -100,7 +100,7 @@ passport.use(new FacebookStrategy({
         if (existingEmailUser) {
           // TODO: handle this
           // tslint:disable-next-line:max-line-length
-          req.flash('errors', { msg: 'There is already an account using this email address. Sign in to that account and link it with Facebook manually from Account Settings.' });
+          // req.flash('errors', { msg: 'There is already an account using this email address. Sign in to that account and link it with Facebook manually from Account Settings.' });
           done(err2);
         } else {
           const user: any = new User();
