@@ -20,7 +20,6 @@
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run serve-debug\"",
-    "ng:build": "npm run env -s && ng build --prod",
     "ng:start": "npm run env -s && ng serve --aot --proxy-config proxy.conf.js",
     "ng:test": "npm run env -s && ng test",
     "test:ci": "npm run env -s && npm run lint -s && ng test --code-coverage --watch=false",
@@ -31,6 +30,7 @@
     "generate": "ng generate",
     "build": "npm run env && npm run tslint && ng build",
     "lint": "ng lint ng-universal-demo && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
+    "build:client": "npm run env -s && ng build --prod",
     "build:server": "tsc -p server/tsconfig.json",
     "start": "node dist/server"
   },
