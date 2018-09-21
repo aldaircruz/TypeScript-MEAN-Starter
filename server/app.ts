@@ -16,8 +16,6 @@ const MongoStore = mongo(session);
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config({ path: '.env.example' });
 
-// Controllers (route handlers)
-import * as homeController from './controllers/home';
 import * as userController from './controllers/user';
 import * as apiController from './controllers/api';
 import * as contactController from './controllers/contact';
