@@ -9,7 +9,7 @@ import {join} from 'path';
 enableProdMode();
 
 // Express server
-import app from './server/app';
+import app from './app';
 
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
@@ -21,11 +21,6 @@ const DIST_FOLDER = join(process.cwd(), 'dist');
 app.get('*.*', express.static(join(DIST_FOLDER, 'public'), {
   maxAge: '1y'
 }));
-
-// All regular routes use the Universal engine
-app.get('*', (req, res) => {
-  res.render('index', { req });
-});
 
 // Start up the Node server
 app.listen(PORT, () => {

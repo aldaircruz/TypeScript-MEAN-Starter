@@ -1,21 +1,22 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist",
-    "sourceMap": true,
+    "outDir": "../dist/server",
+    "sourceMap": false,
     "declaration": false,
     "emitDecoratorMetadata": true,
+    "removeComments": true,
     "experimentalDecorators": true,
     "target": "es6",
     "module": "commonjs",
     "typeRoots": [
-      "node_modules/@types",
-      "server/types"
+      "../node_modules/@types",
+      "types"
     ],
     "lib": [
       "es2017",
       "dom"
     ]
   },
-  "include": ["server.ts"]
+  "include": ["index.ts"]
 }
