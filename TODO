@@ -6,5 +6,5 @@
 - Use modemon, ts-node and webpack dev middleware for debugging; 
 - Clean-up project;
 - Fix e2e tests: `npm run e2e`;
-- Crate README.middleware;
+- Create README.md;
 - Update outdate dependencies;
