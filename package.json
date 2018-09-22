@@ -38,8 +38,7 @@
   },
   "pre-commit": [
     "build",
-    "lint",
-    "test"
+    "lint"
   ],
   "dependencies": {
     "@angular/animations": "^6.1.8",
