@@ -3,7 +3,7 @@
     "version": "5.1.0",
     "props": {
       "location": "path",
-      "appName": "express typescript starter",
+      "appName": "typescript mean starter",
       "target": [
         "web"
       ],
@@ -14,7 +14,7 @@
       "lazy": true,
       "angulartics": true,
       "analyticsProvider": "other",
-      "projectName": "express-typescript-starter",
+      "projectName": "typescript-mean-starter",
       "packageManager": "npm",
       "mobile": []
     }
