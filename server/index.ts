@@ -1,26 +1,20 @@
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
-import {enableProdMode} from '@angular/core';
+import { enableProdMode } from '@angular/core';
 
 import * as express from 'express';
-import {join} from 'path';
+import { join } from 'path';
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
+const PORT = process.env.PORT || 4000;
+const INDEX = join(process.cwd(), 'dist', 'public');
+
 // Express server
 import app from './app';
 
-const PORT = process.env.PORT || 4000;
-const DIST_FOLDER = join(process.cwd(), 'dist');
-
-// Example Express Rest API endpoints
-// app.get('/api/**', (req, res) => { });
-
-// Server static files from /browser
-app.get('*.*', express.static(join(DIST_FOLDER, 'public'), {
-  maxAge: '1y'
-}));
+app.use('/', express.static(INDEX));
 
 // Start up the Node server
 app.listen(PORT, () => {
