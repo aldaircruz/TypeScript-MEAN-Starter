@@ -26,7 +26,7 @@
     "build:client": "npm run env -s && npm run tslint && ng build --prod",
     "build:server": "tsc -p server/tsconfig.json",
     "test": "npm run test:server && npm run test:client",
-    "test:server": "jest --config server/jest.config.js --forceExit --coverage --verbose",
+    "test:server": "jest --config server/jest.config.js --forceExit --coverage --verbose --coverageDirectory ../coverage",
     "test:client": "npm run env -s && ng test",
     "test:ci": "npm run env -s && npm run lint -s && ng test --code-coverage --watch=false",
     "start": "node dist/server",
