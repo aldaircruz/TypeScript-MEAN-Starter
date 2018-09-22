@@ -1,4 +1,4 @@
-# express typescript starter
+# typescript mean starter
 
 Welcome to the project documentation!
 
