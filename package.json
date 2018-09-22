@@ -2,6 +2,7 @@
   "name": "typescript-mean-starter",
   "version": "0.1.0",
   "description": "A starting point for MEAN stack apps with TypeScript",
+  "main": "dist/server",
   "repository": {
     "type": "git",
     "url": "https://github.com/Microsoft/TypeScript-Node-Starter"
