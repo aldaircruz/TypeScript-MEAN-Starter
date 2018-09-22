@@ -19,3 +19,5 @@ app.use('/', express.static(INDEX));
 app.listen(PORT, () => {
   console.log(`Node Express server listening on http://localhost:${PORT}`);
 });
+
+module.exports = app;
