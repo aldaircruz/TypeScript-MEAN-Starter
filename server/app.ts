@@ -16,8 +16,8 @@ const MongoStore = mongo(session);
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config({ path: '.env.example' });
 
-import * as userController from './controllers/user';
-import * as contactController from './controllers/contact';
+// import * as userController from './controllers/user';
+// import * as contactController from './controllers/contact';
 
 
 // API keys and Passport configuration
@@ -81,29 +81,29 @@ app.use(
 /**
  * Primary app routes.
  */
-// app.get('/', homeController.index);
-app.get('/login', userController.getLogin);
-app.post('/login', userController.postLogin);
-app.get('/logout', userController.logout);
-app.get('/forgot', userController.getForgot);
-app.post('/forgot', userController.postForgot);
-app.get('/reset/:token', userController.getReset);
-app.post('/reset/:token', userController.postReset);
-app.get('/signup', userController.getSignup);
-app.post('/signup', userController.postSignup);
-app.get('/contact', contactController.getContact);
-app.post('/contact', contactController.postContact);
-app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
-app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
-app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
-app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
-app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+// app.get('/api/', homeController.index);
+// app.get('/api/login', userController.getLogin);
+// app.post('/api/login', userController.postLogin);
+// app.get('/api/logout', userController.logout);
+// app.get('/api/forgot', userController.getForgot);
+// app.post('/api/forgot', userController.postForgot);
+// app.get('/api/reset/:token', userController.getReset);
+// app.post('/api/reset/:token', userController.postReset);
+// app.get('/api/signup', userController.getSignup);
+// app.post('/api/signup', userController.postSignup);
+// app.get('/api/contact', contactController.getContact);
+// app.post('/api/contact', contactController.postContact);
+// app.get('/api/account', passportConfig.isAuthenticated, userController.getAccount);
+// app.post('/api/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
+// app.post('/api/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
+// app.post('/api/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
+// app.get('/api/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
 /**
  * OAuth authentication routes. (Sign in)
  */
-app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'public_profile'] }));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), (req, res) => {
+app.get('/api/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'public_profile'] }));
+app.get('/api/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
 
