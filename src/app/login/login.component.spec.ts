@@ -5,9 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { CoreModule } from '@app/core';
-import { SharedModule } from '@app/shared';
-import { MaterialModule } from '@app/material.module';
+import { MaterialModule } from '../material.module';
+import { CoreModule } from '../core';
+import { SharedModule } from '../shared';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
