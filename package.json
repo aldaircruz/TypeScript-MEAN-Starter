@@ -36,6 +36,11 @@
     "start": "node dist/server",
     "start:client": "npm run env -s && ng serve --aot --proxy-config src/proxy.conf.js"
   },
+  "pre-commit": [
+    "build",
+    "lint",
+    "test"
+  ],
   "dependencies": {
     "@angular/animations": "^6.1.8",
     "@angular/cdk": "^6.4.7",
@@ -126,6 +131,7 @@
     "karma-junit-reporter": "^1.2.0",
     "node-sass": "^4.7.2",
     "nodemon": "^1.13.0",
+    "pre-commit": "^1.2.2",
     "protractor": "~5.4.0",
     "puppeteer": "^1.4.0",
     "reflect-metadata": "^0.1.10",
