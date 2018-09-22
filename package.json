@@ -19,7 +19,6 @@
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run serve-debug\"",
-    "ng:start": "npm run env -s && ng serve --aot --proxy-config proxy.conf.js",
     "e2e": "npm run env -s && ng e2e",
     "translations:extract": "ngx-translate-extract --input ./src --output ./src/translations/template.json --format=json --clean -sort --marker extract",
     "docs": "hads ./docs -o",
@@ -33,7 +32,8 @@
     "test:server": "jest --config server/jest.config.js --forceExit --coverage --verbose",
     "test:client": "npm run env -s && ng test",
     "test:ci": "npm run env -s && npm run lint -s && ng test --code-coverage --watch=false",
-    "start": "node dist/server"
+    "start": "node dist/server",
+    "start:client": "npm run env -s && ng serve --aot --proxy-config src/proxy.conf.js"
   },
   "dependencies": {
     "@angular/animations": "^6.1.6",
