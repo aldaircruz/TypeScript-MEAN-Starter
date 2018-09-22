@@ -24,7 +24,7 @@
     "docs": "hads ./docs -o",
     "env": "ngx-scripts env npm_package_version",
     "generate": "ng generate",
-    "lint": "ng lint ng-universal-demo && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
+    "lint": "ng lint app && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
     "build": "npm run env && npm run build:server && npm run build:client",
     "build:client": "npm run env -s && npm run tslint && ng build --prod",
     "build:server": "tsc -p server/tsconfig.json",
