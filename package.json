@@ -30,7 +30,7 @@
     "test:client": "npm run env -s && ng test",
     "test:ci": "npm run env -s && npm run lint -s && ng test --code-coverage --watch=false",
     "start": "node dist/server",
-    "prestart": "npm run build",
+    "postinstall": "npm run build",
     "start:client": "npm run env -s && ng serve --aot --proxy-config src/proxy.conf.js"
   },
   "dependencies": {
